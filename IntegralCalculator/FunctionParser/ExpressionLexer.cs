@@ -36,8 +36,6 @@ namespace IntegralCalculator.FunctionParser {
         private TokenType getTokenType() {
             if (characterStream.isNextCharWhiteSpace()) {
                 return TokenType.WHITESPACE;
-            } else if (characterStream.isNextCharEulersConstant()) {
-                return TokenType.EULERS_CONSTANT;
             } else if (characterStream.isNextCharLetter()) {
                 return TokenType.IDENTIFIER;
             } else if (characterStream.isNextCharDigit()) {
@@ -66,8 +64,6 @@ namespace IntegralCalculator.FunctionParser {
                 case TokenType.LEFT_PARENTHESES:
                 case TokenType.RIGHT_PARENTHESES:
                     return readParentheses();
-                case TokenType.EULERS_CONSTANT:
-                    return readEulersConstant();
                 default:
                     throw new UnknownTokenException("Unknown Token " + type);
             }

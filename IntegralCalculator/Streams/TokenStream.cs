@@ -45,7 +45,7 @@ namespace IntegralCalculator.Streams
         }
 
         public bool isNextTokenVariable() {
-            if (isNextTokenIdentifier() && !isNextTokenEulerConstant()) {
+            if (isNextTokenIdentifier()) {
                 Token token = peek();
                 Symbol symbol = token.getSymbol();
                 string value = symbol.getValue();
@@ -53,10 +53,6 @@ namespace IntegralCalculator.Streams
             } else {
                 return false;
             }
-        }
-
-        public bool isNextTokenEulerConstant() {
-            return isNextTypeOf(TokenType.EULERS_CONSTANT);
         }
 
         public bool isNextTokenNumber() {
