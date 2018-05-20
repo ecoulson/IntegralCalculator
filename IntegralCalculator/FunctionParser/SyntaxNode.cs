@@ -1,6 +1,4 @@
 ﻿using System;
-using IntegralCalculator.FunctionParser.Terms;
-
 namespace IntegralCalculator.FunctionParser
 {
     public class SyntaxNode

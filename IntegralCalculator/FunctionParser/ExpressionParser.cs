@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using IntegralCalculator.Streams;
-using IntegralCalculator.FunctionParser.Terms;
 
 namespace IntegralCalculator.FunctionParser {
     public class ExpressionParser {
@@ -16,7 +15,7 @@ namespace IntegralCalculator.FunctionParser {
             TokenStream tokenStream = lexer.lex();
 
             SyntaxTree syntaxTree = new SyntaxTree(tokenStream);
-            EvaluationTree evaluationTree = syntaxTree.buildEvaluationTree();
+            EvaluationTree evaluationTree = new EvaluationTree(syntaxTree);
             return evaluationTree;
         }
     }

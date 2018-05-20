@@ -1,5 +1,4 @@
 ﻿using System;
-using IntegralCalculator.FunctionParser.Terms;
 using IntegralCalculator.Streams;
 using IntegralCalculator.Exceptions;
 

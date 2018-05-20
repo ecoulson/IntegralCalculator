@@ -49,11 +49,6 @@
     <Compile Include="Calculator\Calculator.cs" />
     <Compile Include="Calculator\Integrator.cs" />
     <Compile Include="Calculator\Interval.cs" />
-    <Compile Include="FunctionParser\Terms\AlgebraicTerm.cs" />
-    <Compile Include="FunctionParser\Terms\TermType.cs" />
-    <Compile Include="FunctionParser\Terms\Term.cs" />
-    <Compile Include="FunctionParser\Terms\ConstantTerm.cs" />
-    <Compile Include="FunctionParser\Terms\OperatorTerm.cs" />
     <Compile Include="Exceptions\UnexpectedTokenException.cs" />
     <Compile Include="Streams\CharacterStream.cs" />
     <Compile Include="Streams\Cursor.cs" />
@@ -64,12 +59,9 @@
     <Compile Include="Exceptions\IllegalReadException.cs" />
     <Compile Include="Exceptions\MoreThanOneVariableException.cs" />
     <Compile Include="FunctionParser\SyntaxTree.cs" />
-    <Compile Include="FunctionParser\Terms\ParenthesesTerm.cs" />
     <Compile Include="FunctionParser\SyntaxNode.cs" />
     <Compile Include="FunctionParser\Declaration.cs" />
     <Compile Include="Exceptions\IllegalDeclarationException.cs" />
-    <Compile Include="FunctionParser\Terms\AbsoluteTerm.cs" />
-    <Compile Include="Streams\TermStream.cs" />
     <Compile Include="FunctionParser\SyntaxTreeBuilder.cs" />
     <Compile Include="FunctionParser\OperatorType.cs" />
     <Compile Include="FunctionParser\Operator.cs" />
@@ -81,7 +73,6 @@
     <Folder Include="Exceptions\" />
     <Folder Include="FunctionParser\" />
     <Folder Include="Calculator\" />
-    <Folder Include="FunctionParser\Terms\" />
     <Folder Include="Streams\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
