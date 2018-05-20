@@ -28,7 +28,7 @@ namespace IntegralCalculator.FunctionParser
 
         public override string ToString()
         {
-            return "[EvaluationNode] Term: " + token.getTokenType();
+            return "[SyntaxNode] Token: " + token.getTokenType();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace IntegralCalculator.FunctionParser {
             TokenStream tokenStream = lexer.lex();
 
             SyntaxTree syntaxTree = new SyntaxTree(tokenStream);
+            syntaxTree.analyze();
             EvaluationTree evaluationTree = new EvaluationTree(syntaxTree);
             return evaluationTree;
         }

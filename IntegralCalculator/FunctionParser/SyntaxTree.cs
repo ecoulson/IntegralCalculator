@@ -8,15 +8,80 @@ namespace IntegralCalculator.FunctionParser
     {
         private SyntaxNode root;
         private SyntaxTreeBuilder treeBuilder;
+        private CharacterStream currentCharacterStream;
 
         public SyntaxTree(TokenStream tokenStream) {
             this.treeBuilder = new SyntaxTreeBuilder(tokenStream);
             this.root = treeBuilder.buildTree();
-            Console.WriteLine(this.root.left.getToken().getSymbol().getValue());
         }
 
         public void analyze() {
-            
+            this.root = analyze(root);
+            Console.WriteLine(root.left.left.getToken().getSymbol().getValue());
+        }
+
+        private SyntaxNode analyze(SyntaxNode node) {
+            if (node.getTokenType() == TokenType.IDENTIFIER) {
+                string identifier = node.getToken().getSymbol().getValue();
+                currentCharacterStream = new CharacterStream(identifier);
+                return parseIdentifier();
+            } else {
+                SyntaxNode newNode = new SyntaxNode(node.getToken());
+                SyntaxNode left = analyze(node.left);
+                SyntaxNode right = analyze(node.right);
+                newNode.left = left;
+                newNode.right = right;
+                return newNode;
+            }
+        }
+
+        private SyntaxNode parseIdentifier() {
+            SyntaxNode node = readNode();
+            while (!currentCharacterStream.isEndOfStream()) {
+                Token operatorToken = new Token(new Symbol("*"), TokenType.OPERATOR);
+                SyntaxNode operatorNode = new SyntaxNode(operatorToken);
+                operatorNode.right = node;
+                operatorNode.left = readNode();
+                node = operatorNode;
+            }
+            return node;
+        }
+
+        private SyntaxNode readNode() {
+            if (currentCharacterStream.isNextCharDigit()) {
+                return readNumber();
+            } else if (currentCharacterStream.isNextCharEuler()) {
+                return readEuler();
+            } else if (currentCharacterStream.isNextCharVariable()) {
+                return readVariable();
+            } else {
+                //TODO create exception
+                throw new Exception();
+            }
+        }
+
+        private SyntaxNode readNumber() {
+            string number = "";
+            while (currentCharacterStream.isNextCharDigit()) {
+                number += currentCharacterStream.readAsString();
+            }
+            Symbol numberSymbol = new Symbol(number);
+            Token numberToken = new Token(numberSymbol, TokenType.NUMBER);
+            return new SyntaxNode(numberToken);
+        }
+
+        private SyntaxNode readEuler() {
+            currentCharacterStream.read();
+            Symbol eulerSymbol = new Symbol(Math.E.ToString());
+            Token eulerToken = new Token(eulerSymbol, TokenType.NUMBER);
+            return new SyntaxNode(eulerToken);
+        }
+
+        private SyntaxNode readVariable() {
+            string variable = currentCharacterStream.readAsString();
+            Symbol variableSymbol = new Symbol(variable);
+            Token variableToken = new Token(variableSymbol, TokenType.VARIABLE);
+            return new SyntaxNode(variableToken);
         }
     }
 }

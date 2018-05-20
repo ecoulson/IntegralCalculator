@@ -38,33 +38,48 @@ namespace IntegralCalculator.Streams
         }
 
         public bool isNextCharWhiteSpace() {
-            char startingChar = peek();
-            return char.IsWhiteSpace(startingChar);
+            char nextChar = peek();
+            return char.IsWhiteSpace(nextChar);
         }
 
         public bool isNextCharIdentifier() {
-            char startingChar = peek();
-            return char.IsLetterOrDigit(startingChar) || startingChar == '.'; 
+            char nextChar = peek();
+            return char.IsLetterOrDigit(nextChar) || nextChar == '.'; 
         }
 
         public bool isNextCharOperator() {
-            char startingChar = peek();
-            return startingChar == '+' ||
-                    startingChar == '-' ||
-                    startingChar == '^' ||
-                    startingChar == '*' ||
-                    startingChar == '/' ||
-                    startingChar == '|';
+            char nextChar = peek();
+            return nextChar == '+' ||
+                    nextChar == '-' ||
+                    nextChar == '^' ||
+                    nextChar == '*' ||
+                    nextChar == '/' ||
+                    nextChar == '|';
+        }
+
+        public bool isNextCharDigit() {
+            char nextChar = peek();
+            return char.IsDigit(nextChar) || nextChar == '.';
+        }
+
+        public bool isNextCharEuler() {
+            char nextChar = peek();
+            return nextChar == 'e';
+        }
+
+        public bool isNextCharVariable() {
+            char nextChar = peek();
+            return !isNextCharEuler() && char.IsLetter(nextChar);
         }
 
         public bool isNextCharLeftParentheses() {
-            char startingChar = peek();
-            return startingChar == '(' || startingChar == '[';
+            char nextChar = peek();
+            return nextChar == '(' || nextChar == '[';
         }
 
         public bool isNextCharRightParentheses() {
-            char startingChar = peek();
-            return startingChar == ')' || startingChar == ']';
+            char nextChar = peek();
+            return nextChar == ')' || nextChar == ']';
         }
     }
 }

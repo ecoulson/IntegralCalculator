@@ -71,10 +71,9 @@ namespace IntegralCalculator.FunctionParser {
 
         private Symbol readIdentifier() {
             string identifier = "";
-            while(shouldReadIdentifier()) {
+            while (shouldReadIdentifier()) {
                 identifier += characterStream.read();
             }
-            Console.WriteLine(identifier);
             return new Symbol(identifier);
         }
 
