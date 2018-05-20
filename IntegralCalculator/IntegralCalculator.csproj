@@ -69,6 +69,8 @@
     <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
     <Compile Include="FunctionParser\EvaluationNode.cs" />
     <Compile Include="App\CalculatorClient.cs" />
+    <Compile Include="App\ConsoleClient.cs" />
+    <Compile Include="App\FileClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
