@@ -1,5 +1,5 @@
 ﻿using System;
-namespace IntegralCalculator
+namespace IntegralCalculator.App
 {
     public class Accumulator
     {

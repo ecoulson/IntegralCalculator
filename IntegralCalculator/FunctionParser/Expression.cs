@@ -1,5 +1,5 @@
 ﻿using System;
-namespace IntegralCalculator
+namespace IntegralCalculator.FunctionParser
 {
     public class Expression
     {
@@ -7,7 +7,7 @@ namespace IntegralCalculator
         }
 
         public double evaluate(double x) {
-            return x * x + 2 * x + 1;
+            return 5;
         }
     }
 }

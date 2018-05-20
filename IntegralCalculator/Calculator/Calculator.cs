@@ -1,9 +1,9 @@
 ﻿using System;
-namespace IntegralCalculator
+namespace IntegralCalculator.App
 {
-    public class IntegralCalculator
+    public class Calculator
     {
-        public IntegralCalculator() {
+        public Calculator() {
         }
 
         public double calculateDefiniteIntegral(Function function, Interval interval) {

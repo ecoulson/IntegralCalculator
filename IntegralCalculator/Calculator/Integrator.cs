@@ -1,10 +1,10 @@
 ﻿using System;
-namespace IntegralCalculator
+namespace IntegralCalculator.App
 {
     public class Integrator
     {
         private const int STARTING_INTERVAL = 0;
-        private const int TOTAL_SUB_INTERVALS = 1000;
+        private const int TOTAL_SUB_INTERVALS = 1000000;
 
         private Integral integral;
         private Accumulator accumulator;
@@ -42,7 +42,7 @@ namespace IntegralCalculator
         private double calculateAccumulationOverSubInterval() {
             Function function = integral.getFunction();
             double x = calculateX();
-            double y = function.getY(x);
+            double y = function.calculateY(x);
             double accumulation = y * subIntervalLength;
             return accumulation;
         }
