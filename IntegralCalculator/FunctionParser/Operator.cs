@@ -1,26 +1,9 @@
 ﻿using System;
-using IntegralCalculator.FunctionParser;
+
 using IntegralCalculator.Exceptions;
 
-namespace IntegralCalculator.FunctionParser.Terms
+namespace IntegralCalculator.FunctionParser
 {
-    public enum OperatorType
-    {
-        ADD,
-        SUBTRACT,
-        MULTIPLY,
-        DIVIDE,
-        EXPONENT,
-        LOG,
-        LN,
-        SIN,
-        COS,
-        TAN,
-        SEC,
-        CSC,
-        COT,
-    }
-
     public class Operator {
         public static OperatorType getOperatorTypeFromToken(Token token) {
             Symbol symbol = token.getSymbol();

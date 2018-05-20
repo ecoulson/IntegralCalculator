@@ -38,7 +38,6 @@
     <Compile Include="Exceptions\IllegalTokenException.cs" />
     <Compile Include="Exceptions\UnknownSymbolException.cs" />
     <Compile Include="Exceptions\UnknownTokenException.cs" />
-    <Compile Include="FunctionParser\Expression.cs" />
     <Compile Include="FunctionParser\ExpressionLexer.cs" />
     <Compile Include="FunctionParser\ExpressionParser.cs" />
     <Compile Include="FunctionParser\Symbol.cs" />
@@ -55,7 +54,6 @@
     <Compile Include="FunctionParser\Terms\Term.cs" />
     <Compile Include="FunctionParser\Terms\ConstantTerm.cs" />
     <Compile Include="FunctionParser\Terms\OperatorTerm.cs" />
-    <Compile Include="FunctionParser\Terms\OperatorType.cs" />
     <Compile Include="Exceptions\UnexpectedTokenException.cs" />
     <Compile Include="Streams\CharacterStream.cs" />
     <Compile Include="Streams\Cursor.cs" />
@@ -65,16 +63,17 @@
     <Compile Include="Exceptions\IllegalSeekException.cs" />
     <Compile Include="Exceptions\IllegalReadException.cs" />
     <Compile Include="Exceptions\MoreThanOneVariableException.cs" />
-    <Compile Include="FunctionParser\EvaluationTree.cs" />
-    <Compile Include="FunctionParser\TermBuilder.cs" />
+    <Compile Include="FunctionParser\SyntaxTree.cs" />
     <Compile Include="FunctionParser\Terms\ParenthesesTerm.cs" />
-    <Compile Include="FunctionParser\EvaluationNode.cs" />
+    <Compile Include="FunctionParser\SyntaxNode.cs" />
     <Compile Include="FunctionParser\Declaration.cs" />
     <Compile Include="Exceptions\IllegalDeclarationException.cs" />
     <Compile Include="FunctionParser\Terms\AbsoluteTerm.cs" />
     <Compile Include="Streams\TermStream.cs" />
     <Compile Include="Exceptions\IllegalTermException.cs" />
-    <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
+    <Compile Include="FunctionParser\SyntaxTreeBuilder.cs" />
+    <Compile Include="FunctionParser\OperatorType.cs" />
+    <Compile Include="FunctionParser\Operator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

@@ -40,6 +40,36 @@ namespace IntegralCalculator.Streams
             return isNextTypeOf(TokenType.OPERATOR);
         }
 
+        public bool isNextTokenExponent() {
+            if (isNextTokenOperator()) {
+                Token token = peek();
+                OperatorType operatorType = Operator.getOperatorTypeFromToken(token);
+                return operatorType == OperatorType.EXPONENT;
+            } else {
+                return false;
+            }
+        }
+
+        public bool isNextTokenFactorOperator() {
+            if (isNextTokenOperator()) {
+                Token token = peek();
+                OperatorType operatorType = Operator.getOperatorTypeFromToken(token);
+                return operatorType == OperatorType.MULTIPLY || operatorType == OperatorType.DIVIDE;
+            } else {
+                return false;
+            }
+        }
+
+        public bool isNextTokenSumOperator() {
+            if (isNextTokenOperator()) {
+                Token token = peek();
+                OperatorType operatorType = Operator.getOperatorTypeFromToken(token);
+                return operatorType == OperatorType.ADD ||  operatorType == OperatorType.SUBTRACT;
+            } else {
+                return false;
+            }
+        }
+
         public bool isNextTokenIdentifier() {
             return isNextTypeOf(TokenType.IDENTIFIER);
         }
@@ -53,10 +83,6 @@ namespace IntegralCalculator.Streams
             } else {
                 return false;
             }
-        }
-
-        public bool isNextTokenNumber() {
-            return isNextTypeOf(TokenType.NUMBER);
         }
 
         public bool isNextTokenRightParentheses() {

@@ -7,10 +7,10 @@ namespace IntegralCalculator.FunctionParser
 {
     public class EvaluationTreeBuilder
     {
-        private TermStream termStream;
+        private TokenStream tokenStream;
 
-        public EvaluationTreeBuilder(TermStream termStream) {
-            this.termStream = termStream;
+        public EvaluationTreeBuilder(TokenStream tokenStream) {
+            this.tokenStream = tokenStream;
         }
 
         public EvaluationNode buildTree() {
@@ -32,7 +32,6 @@ namespace IntegralCalculator.FunctionParser
             EvaluationNode node = readExponents();
             while (shouldReadFactor()) {
                 EvaluationNode operatorNode = readFactorOperator();
-                Console.WriteLine(((OperatorTerm)operatorNode.getTerm()).getOperator());
                 operatorNode.left = node;
                 operatorNode.right = readExponents();
                 node = operatorNode;
@@ -52,11 +51,11 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool shouldReadExponent() {
-            return !termStream.isEndOfStream() && termStream.isNextTermExponent();
+            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenExponent();
         }
 
         private EvaluationNode readExponentOperator() {
-            if (termStream.isNextTermExponent()) {
+            if (tokenStream.isNextTokenExponent()) {
                 return readTerm();
             } else {
                 throw new IllegalTermException();
@@ -64,11 +63,11 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool shouldReadFactor() {
-            return !termStream.isEndOfStream() && termStream.isNextTermFactorOperator();
+            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenFactorOperator();
         }
 
         private EvaluationNode readFactorOperator() {
-            if (termStream.isNextTermFactorOperator()) {
+            if (tokenStream.isNextTokenFactorOperator()) {
                 return readTerm();
             } else {
                 throw new IllegalTermException();
@@ -76,11 +75,11 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool shouldReadSum() {
-            return !termStream.isEndOfStream() && termStream.isNextTermSumOperator() && !termStream.isNextTermRightParentheses();
+            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenSumOperator() && !tokenStream.isNextTokenRightParentheses();
         }
 
         private EvaluationNode readSumOperator() {
-            if (termStream.isNextTermSumOperator()) {
+            if (tokenStream.isNextTokenSumOperator()) {
                 return readTerm();
             } else {
                 throw new IllegalTermException();
@@ -88,13 +87,13 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private EvaluationNode readTerm() {
-            if (termStream.isNextTermLeftParentheses()) {
-                termStream.read();
+            if (tokenStream.isNextTokenLeftParentheses()) {
+                tokenStream.read();
                 EvaluationNode node = readSums();
-                termStream.read();
+                tokenStream.read();
                 return node;
             } else {
-                return new EvaluationNode(termStream.read());   
+                return new EvaluationNode(tokenStream.read());   
             }
         }
     }

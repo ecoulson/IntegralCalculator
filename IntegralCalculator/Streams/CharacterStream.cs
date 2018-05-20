@@ -42,26 +42,9 @@ namespace IntegralCalculator.Streams
             return char.IsWhiteSpace(startingChar);
         }
 
-        public bool isNextCharEulersConstant() {
+        public bool isNextCharIdentifier() {
             char startingChar = peek();
-            bool isEulerChar = startingChar == 'e';
-            int position = getCursorPosition();
-            seek(position + 1);
-            if (!isEndOfStream()) {
-                return isEulerChar && !isNextCharLetter();
-            }
-            seek(position);
-            return false;
-        }
-
-        public bool isNextCharDigit() {
-            char startingChar = peek();
-            return char.IsDigit(startingChar) || startingChar == '.';
-        }
-
-        public bool isNextCharLetter() {
-            char startingChar = peek();
-            return char.IsLetter(startingChar);
+            return char.IsLetterOrDigit(startingChar) || startingChar == '.'; 
         }
 
         public bool isNextCharOperator() {

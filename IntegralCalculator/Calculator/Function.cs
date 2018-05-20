@@ -5,7 +5,7 @@ namespace IntegralCalculator.App
 {
     public class Function
     {
-        private EvaluationTree evaluationTree;
+        private SyntaxTree evaluationTree;
         private Declaration declaration;
         private string function;
 
@@ -23,7 +23,7 @@ namespace IntegralCalculator.App
             return true;
         }
 
-        private EvaluationTree parseExpression() {
+        private SyntaxTree parseExpression() {
             string rightHandSide = getRightHandSide();
             ExpressionParser expressionParser = new ExpressionParser(rightHandSide);
             return expressionParser.parse();
@@ -43,7 +43,8 @@ namespace IntegralCalculator.App
         }
 
         public double calculateY(double x) {
-            return evaluationTree.evaluate(x);
+            return 5;
+            //return evaluationTree.evaluate(x);
         }
     }
 }

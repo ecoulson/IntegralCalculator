@@ -36,10 +36,8 @@ namespace IntegralCalculator.FunctionParser {
         private TokenType getTokenType() {
             if (characterStream.isNextCharWhiteSpace()) {
                 return TokenType.WHITESPACE;
-            } else if (characterStream.isNextCharLetter()) {
+            } else if (shouldReadIdentifier()) {
                 return TokenType.IDENTIFIER;
-            } else if (characterStream.isNextCharDigit()) {
-                return TokenType.NUMBER;
             } else if (characterStream.isNextCharOperator()) {
                 return TokenType.OPERATOR;
             } else if (characterStream.isNextCharLeftParentheses()) {
@@ -51,10 +49,12 @@ namespace IntegralCalculator.FunctionParser {
             }
         }
 
+        private bool shouldReadIdentifier() {
+            return !characterStream.isEndOfStream() && characterStream.isNextCharIdentifier();
+        }
+
         private Symbol readSymbol(TokenType type) {
             switch(type) {
-                case TokenType.NUMBER:
-                    return readNumber();
                 case TokenType.IDENTIFIER:
                     return readIdentifier();
                 case TokenType.OPERATOR:
@@ -69,28 +69,13 @@ namespace IntegralCalculator.FunctionParser {
             }
         }
 
-        private Symbol readNumber() {
-            string number = "";
-            while (shouldReadDigit()) {
-                number += characterStream.read();
-            }
-            return new Symbol(number);
-        }
-
-        private bool shouldReadDigit() {
-            return !characterStream.isEndOfStream() && characterStream.isNextCharDigit();
-        }
-
         private Symbol readIdentifier() {
             string identifier = "";
-            while(shouldReadLetter()) {
+            while(shouldReadIdentifier()) {
                 identifier += characterStream.read();
             }
+            Console.WriteLine(identifier);
             return new Symbol(identifier);
-        }
-
-        private bool shouldReadLetter() {
-            return !characterStream.isEndOfStream() && characterStream.isNextCharLetter();
         }
 
         private Symbol readOperator() {
@@ -103,11 +88,6 @@ namespace IntegralCalculator.FunctionParser {
 
         private Symbol readParentheses() {
             return readSymbol();
-        }
-
-        private Symbol readEulersConstant() {
-            characterStream.read();
-            return new Symbol(Math.E.ToString());
         }
 
         private Symbol readSymbol() {
