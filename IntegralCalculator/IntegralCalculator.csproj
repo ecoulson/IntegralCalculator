@@ -70,10 +70,12 @@
     <Compile Include="Exceptions\IllegalDeclarationException.cs" />
     <Compile Include="FunctionParser\Terms\AbsoluteTerm.cs" />
     <Compile Include="Streams\TermStream.cs" />
-    <Compile Include="Exceptions\IllegalTermException.cs" />
     <Compile Include="FunctionParser\SyntaxTreeBuilder.cs" />
     <Compile Include="FunctionParser\OperatorType.cs" />
     <Compile Include="FunctionParser\Operator.cs" />
+    <Compile Include="FunctionParser\EvaluationTree.cs" />
+    <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
+    <Compile Include="FunctionParser\EvaluationNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

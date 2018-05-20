@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{1E75E8D2-D0FD-4C55-B9DC-9B0F795436F7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/FunctionParser/ExpressionLexer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/FunctionParser/EvaluationTree.cs">
     <Files>
-      <File FileName="IntegralCalculator/FunctionParser/ExpressionParser.cs" Line="18" Column="53" />
-      <File FileName="IntegralCalculator/FunctionParser/EvaluationTree.cs" Line="16" Column="48" />
-      <File FileName="IntegralCalculator/FunctionParser/EvaluationTreeBuilder.cs" Line="70" Column="40" />
-      <File FileName="IntegralCalculator/Program.cs" Line="11" Column="57" />
-      <File FileName="IntegralCalculator/Streams/TokenStream.cs" Line="86" Column="10" />
-      <File FileName="IntegralCalculator/FunctionParser/ExpressionLexer.cs" Line="53" Column="95" />
+      <File FileName="IntegralCalculator/FunctionParser/ExpressionParser.cs" Line="14" Column="30" />
+      <File FileName="IntegralCalculator/FunctionParser/SyntaxTree.cs" Line="19" Column="25" />
+      <File FileName="IntegralCalculator/FunctionParser/EvaluationTree.cs" Line="7" Column="37" />
+      <File FileName="IntegralCalculator/FunctionParser/EvaluationTreeBuilder.cs" Line="12" Column="30" />
+      <File FileName="IntegralCalculator/Calculator/Function.cs" Line="26" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

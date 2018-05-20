@@ -11,13 +11,13 @@ namespace IntegralCalculator.FunctionParser {
             this.expression = expression;
         }
 
-        public SyntaxTree parse() {
+        public EvaluationTree parse() {
             ExpressionLexer lexer = new ExpressionLexer(expression);
             TokenStream tokenStream = lexer.lex();
 
-            SyntaxTree expressionTree = new SyntaxTree(tokenStream);
-
-            return expressionTree;
+            SyntaxTree syntaxTree = new SyntaxTree(tokenStream);
+            EvaluationTree evaluationTree = syntaxTree.buildEvaluationTree();
+            return evaluationTree;
         }
     }
 }

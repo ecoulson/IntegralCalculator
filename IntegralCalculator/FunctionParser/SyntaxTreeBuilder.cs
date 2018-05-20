@@ -5,22 +5,22 @@ using IntegralCalculator.Exceptions;
 
 namespace IntegralCalculator.FunctionParser
 {
-    public class EvaluationTreeBuilder
+    public class SyntaxTreeBuilder
     {
         private TokenStream tokenStream;
 
-        public EvaluationTreeBuilder(TokenStream tokenStream) {
+        public SyntaxTreeBuilder(TokenStream tokenStream) {
             this.tokenStream = tokenStream;
         }
 
-        public EvaluationNode buildTree() {
+        public SyntaxNode buildTree() {
             return readSums();
         }
 
-        private EvaluationNode readSums() {
-            EvaluationNode node = readFactors();
+        private SyntaxNode readSums() {
+            SyntaxNode node = readFactors();
             while (shouldReadSum()) {
-                EvaluationNode operatorNode = readSumOperator();
+                SyntaxNode operatorNode = readSumOperator();
                 operatorNode.left = node;
                 operatorNode.right = readFactors();
                 node = operatorNode;
@@ -28,10 +28,10 @@ namespace IntegralCalculator.FunctionParser
             return node;
         }
 
-        private EvaluationNode readFactors() {
-            EvaluationNode node = readExponents();
+        private SyntaxNode readFactors() {
+            SyntaxNode node = readExponents();
             while (shouldReadFactor()) {
-                EvaluationNode operatorNode = readFactorOperator();
+                SyntaxNode operatorNode = readFactorOperator();
                 operatorNode.left = node;
                 operatorNode.right = readExponents();
                 node = operatorNode;
@@ -39,12 +39,12 @@ namespace IntegralCalculator.FunctionParser
             return node;
         }
 
-        private EvaluationNode readExponents() {
-            EvaluationNode node = readTerm();
+        private SyntaxNode readExponents() {
+            SyntaxNode node = readToken();
             while (shouldReadExponent()) {
-                EvaluationNode operatorNode = readExponentOperator();
+                SyntaxNode operatorNode = readExponentOperator();
                 operatorNode.left = node;
-                operatorNode.right = readTerm();
+                operatorNode.right = readToken();
                 node = operatorNode;
             }
             return node;
@@ -54,11 +54,11 @@ namespace IntegralCalculator.FunctionParser
             return !tokenStream.isEndOfStream() && tokenStream.isNextTokenExponent();
         }
 
-        private EvaluationNode readExponentOperator() {
+        private SyntaxNode readExponentOperator() {
             if (tokenStream.isNextTokenExponent()) {
-                return readTerm();
+                return readToken();
             } else {
-                throw new IllegalTermException();
+                throw new IllegalTokenException("Illegal Token type: " + tokenStream.peek().getTokenType());
             }
         }
 
@@ -66,11 +66,11 @@ namespace IntegralCalculator.FunctionParser
             return !tokenStream.isEndOfStream() && tokenStream.isNextTokenFactorOperator();
         }
 
-        private EvaluationNode readFactorOperator() {
+        private SyntaxNode readFactorOperator() {
             if (tokenStream.isNextTokenFactorOperator()) {
-                return readTerm();
+                return readToken();
             } else {
-                throw new IllegalTermException();
+                throw new IllegalTokenException("Illegal Token type: " + tokenStream.peek().getTokenType());
             }
         }
 
@@ -78,22 +78,22 @@ namespace IntegralCalculator.FunctionParser
             return !tokenStream.isEndOfStream() && tokenStream.isNextTokenSumOperator() && !tokenStream.isNextTokenRightParentheses();
         }
 
-        private EvaluationNode readSumOperator() {
+        private SyntaxNode readSumOperator() {
             if (tokenStream.isNextTokenSumOperator()) {
-                return readTerm();
+                return readToken();
             } else {
-                throw new IllegalTermException();
+                throw new IllegalTokenException("Illegal Token type: " + tokenStream.peek().getTokenType());
             }
         }
 
-        private EvaluationNode readTerm() {
+        private SyntaxNode readToken() {
             if (tokenStream.isNextTokenLeftParentheses()) {
                 tokenStream.read();
-                EvaluationNode node = readSums();
+                SyntaxNode node = readSums();
                 tokenStream.read();
                 return node;
             } else {
-                return new EvaluationNode(tokenStream.read());   
+                return new SyntaxNode(tokenStream.read());   
             }
         }
     }

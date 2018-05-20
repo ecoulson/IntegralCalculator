@@ -15,6 +15,10 @@ namespace IntegralCalculator.FunctionParser
             this.root = treeBuilder.buildTree();
         }
 
+        public EvaluationTree buildEvaluationTree() {
+            return null;
+        }
+
         //public double evaluate(double x) {
         //    return evaluate(x, root);
         //}
