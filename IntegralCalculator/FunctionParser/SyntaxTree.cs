@@ -17,7 +17,6 @@ namespace IntegralCalculator.FunctionParser
 
         public void analyze() {
             this.root = analyze(root);
-            printNode(root.right.left.left.left);
         }
 
         private void printNode(SyntaxNode node) {

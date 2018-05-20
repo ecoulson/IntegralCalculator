@@ -8,6 +8,7 @@ namespace IntegralCalculator
     {
         public static void Main(string[] args) {
             CalculatorClient client = new CalculatorClient();
+            client.run();
         }
     }
 }
