@@ -64,12 +64,16 @@ namespace IntegralCalculator.FunctionParser
 
         private SyntaxNode readNumber() {
             string number = "";
-            while (currentCharacterStream.isNextCharDigit()) {
+            while (shouldReadNumber()) {
                 number += currentCharacterStream.readAsString();
             }
             Symbol numberSymbol = new Symbol(number);
             Token numberToken = new Token(numberSymbol, TokenType.NUMBER);
             return new SyntaxNode(numberToken);
+        }
+
+        private bool shouldReadNumber() {
+            return !currentCharacterStream.isEndOfStream() && currentCharacterStream.isNextCharDigit();
         }
 
         private SyntaxNode readEuler() {

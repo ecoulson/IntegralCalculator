@@ -1,10 +1,12 @@
 ﻿<Properties StartupConfiguration="{1E75E8D2-D0FD-4C55-B9DC-9B0F795436F7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/App/Integrator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/FunctionParser/SyntaxTreeBuilder.cs">
     <Files>
-      <File FileName="IntegralCalculator/Program.cs" Line="16" Column="26" />
-      <File FileName="IntegralCalculator/App/FileClient.cs" Line="107" Column="10" />
-      <File FileName="IntegralCalculator/App/ConsoleClient.cs" Line="71" Column="9" />
-      <File FileName="IntegralCalculator/App/Integrator.cs" Line="25" Column="1" />
+      <File FileName="IntegralCalculator/Program.cs" Line="11" Column="58" />
+      <File FileName="IntegralCalculator/Streams/CharacterStream.cs" Line="19" Column="1" />
+      <File FileName="IntegralCalculator/FunctionParser/SyntaxTree.cs" Line="27" Column="1" />
+      <File FileName="IntegralCalculator/FunctionParser/SyntaxTreeBuilder.cs" Line="108" Column="46" />
+      <File FileName="IntegralCalculator/Streams/TokenStream.cs" Line="78" Column="30" />
+      <File FileName="IntegralCalculator/FunctionParser/TokenType.cs" Line="14" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

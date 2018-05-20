@@ -69,6 +69,16 @@ namespace IntegralCalculator.Streams
             }
         }
 
+        public bool isNextTokenMinusSign() {
+            if (isNextTokenOperator()) {
+                Token token = peek();
+                OperatorType operatorType = Operator.getOperatorTypeFromToken(token);
+                return operatorType == OperatorType.SUBTRACT;
+            } else {
+                return false;
+            }
+        }
+
         public bool isNextTokenIdentifier() {
             return isNextTypeOf(TokenType.IDENTIFIER);
         }

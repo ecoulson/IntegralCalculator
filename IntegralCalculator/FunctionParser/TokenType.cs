@@ -11,5 +11,6 @@ namespace IntegralCalculator.FunctionParser
         RIGHT_PARENTHESES,
         ABSOLUTE_VALUE,
         VARIABLE,
+        NEGATIVE,
     }
 }
