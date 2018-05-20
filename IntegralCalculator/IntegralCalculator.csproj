@@ -43,12 +43,12 @@
     <Compile Include="FunctionParser\Symbol.cs" />
     <Compile Include="FunctionParser\Token.cs" />
     <Compile Include="FunctionParser\TokenType.cs" />
-    <Compile Include="Calculator\Accumulator.cs" />
-    <Compile Include="Calculator\Function.cs" />
-    <Compile Include="Calculator\Integral.cs" />
-    <Compile Include="Calculator\Calculator.cs" />
-    <Compile Include="Calculator\Integrator.cs" />
-    <Compile Include="Calculator\Interval.cs" />
+    <Compile Include="App\Accumulator.cs" />
+    <Compile Include="App\Function.cs" />
+    <Compile Include="App\Integral.cs" />
+    <Compile Include="App\Calculator.cs" />
+    <Compile Include="App\Integrator.cs" />
+    <Compile Include="App\Interval.cs" />
     <Compile Include="Exceptions\UnexpectedTokenException.cs" />
     <Compile Include="Streams\CharacterStream.cs" />
     <Compile Include="Streams\Cursor.cs" />
@@ -68,11 +68,12 @@
     <Compile Include="FunctionParser\EvaluationTree.cs" />
     <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
     <Compile Include="FunctionParser\EvaluationNode.cs" />
+    <Compile Include="App\CalculatorClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="FunctionParser\" />
-    <Folder Include="Calculator\" />
+    <Folder Include="App\" />
     <Folder Include="Streams\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -20,8 +20,8 @@ namespace IntegralCalculator.FunctionParser
             SyntaxNode node = readFactors();
             while (shouldReadSum()) {
                 SyntaxNode operatorNode = readSumOperator();
-                operatorNode.right = node;
-                operatorNode.left = readFactors();
+                operatorNode.left = node;
+                operatorNode.right = readFactors();
                 node = operatorNode;
             }
             return node;
@@ -31,8 +31,8 @@ namespace IntegralCalculator.FunctionParser
             SyntaxNode node = readExponents();
             while (shouldReadFactor()) {
                 SyntaxNode operatorNode = readFactorOperator();
-                operatorNode.right = node;
-                operatorNode.left = readExponents();
+                operatorNode.left = node;
+                operatorNode.right = readExponents();
                 node = operatorNode;
             }
             return node;
@@ -42,8 +42,8 @@ namespace IntegralCalculator.FunctionParser
             SyntaxNode node = readToken();
             while (shouldReadExponent()) {
                 SyntaxNode operatorNode = readExponentOperator();
-                operatorNode.right = node;
-                operatorNode.left = readToken();
+                operatorNode.left = node;
+                operatorNode.right = readToken();
                 node = operatorNode;
             }
             return node;

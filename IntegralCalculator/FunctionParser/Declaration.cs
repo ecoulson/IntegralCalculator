@@ -9,7 +9,7 @@ namespace IntegralCalculator.FunctionParser
         private TokenStream tokenStream;
 
         private string name;
-        private char varaible;
+        private char variable;
 
         public Declaration(string declaration) {
             ExpressionLexer lexer = new ExpressionLexer(declaration);
@@ -20,7 +20,7 @@ namespace IntegralCalculator.FunctionParser
         private void parseDeclaration() {
             this.name = readName();
             readLeftParentheses();
-            this.varaible = readVariable();
+            this.variable = readVariable();
             readRightParentheses();
         }
 
@@ -35,7 +35,7 @@ namespace IntegralCalculator.FunctionParser
                 Token token = tokenStream.read();
                 return token;
             } else {
-                throw new IllegalTokenException();
+                throw new IllegalTokenException("Expected Identifier Token Instead Found TokenType: " + tokenStream.peek().getTokenType());
             }
         }
 
@@ -43,7 +43,7 @@ namespace IntegralCalculator.FunctionParser
             if (tokenStream.isNextTokenLeftParentheses()) {
                 return tokenStream.read();
             } else {
-                throw new IllegalTokenException();
+                throw new IllegalTokenException("Expected Left Parentheses Token Instead Found TokenType: " + tokenStream.peek().getTokenType());
             }
         }
 
@@ -53,7 +53,7 @@ namespace IntegralCalculator.FunctionParser
                 Symbol symbol = token.getSymbol();
                 return symbol.getValue()[0];
             } else {
-                throw new IllegalTokenException();
+                throw new IllegalTokenException("Expected Variable Token Instead Found TokenType: " + tokenStream.peek().getTokenType());
             }
         }
 
@@ -61,7 +61,7 @@ namespace IntegralCalculator.FunctionParser
             if (tokenStream.isNextTokenRightParentheses()) {
                 return tokenStream.read();
             } else {
-                throw new IllegalTokenException();
+                throw new IllegalTokenException("Expected Right Parentheses Token Instead Found TokenType: " + tokenStream.peek().getTokenType());
             }
         }
 
@@ -70,7 +70,7 @@ namespace IntegralCalculator.FunctionParser
         }
 
         public char getVariable() {
-            return varaible;
+            return variable;
         }
     }
 }

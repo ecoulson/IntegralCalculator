@@ -17,7 +17,11 @@ namespace IntegralCalculator.FunctionParser
 
         public void analyze() {
             this.root = analyze(root);
-            Console.WriteLine(root.left.left.getToken().getSymbol().getValue());
+            printNode(root.right.left.left.left);
+        }
+
+        private void printNode(SyntaxNode node) {
+            Console.WriteLine(node.getToken().getSymbol().getValue());
         }
 
         private SyntaxNode analyze(SyntaxNode node) {
@@ -40,8 +44,8 @@ namespace IntegralCalculator.FunctionParser
             while (!currentCharacterStream.isEndOfStream()) {
                 Token operatorToken = new Token(new Symbol("*"), TokenType.OPERATOR);
                 SyntaxNode operatorNode = new SyntaxNode(operatorToken);
-                operatorNode.right = node;
-                operatorNode.left = readNode();
+                operatorNode.left = node;
+                operatorNode.right = readNode();
                 node = operatorNode;
             }
             return node;
@@ -55,8 +59,7 @@ namespace IntegralCalculator.FunctionParser
             } else if (currentCharacterStream.isNextCharVariable()) {
                 return readVariable();
             } else {
-                //TODO create exception
-                throw new Exception();
+                throw new UnknownSymbolException("Unrecognized Symbol " + currentCharacterStream.readAsString());
             }
         }
 
