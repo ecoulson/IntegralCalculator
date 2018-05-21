@@ -14,6 +14,7 @@ namespace IntegralCalculator.App
             if (isValidFunction()) {
                 this.declaration = parseDeclaration();
                 this.evaluationTree = parseExpression();
+                addFunctionToNameSpace();
             } else {
                 throw new Exception();
             }
@@ -44,6 +45,11 @@ namespace IntegralCalculator.App
 
         public double calculateY(double x) {
             return evaluationTree.evaluate(x);
+        }
+
+        private void addFunctionToNameSpace() {
+            string functionName = declaration.getName();
+            Calculator.currentNameSpace.addFunction(functionName, this);
         }
     }
 }

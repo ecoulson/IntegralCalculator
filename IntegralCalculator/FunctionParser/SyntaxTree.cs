@@ -22,21 +22,21 @@ namespace IntegralCalculator.FunctionParser
 
         public void analyze() {
             // TODO: Possibly break down these routines into their own trees?
-            this.root = transformIdentifiers(root);
+            this.root = transformNumbers(root);
             this.root = breakOutExponents(root);
             this.root = transformInvokes(root);
             this.root = breakDownIdentifiers(root);
         }
 
-        private SyntaxNode transformIdentifiers(SyntaxNode node) {
+        private SyntaxNode transformNumbers(SyntaxNode node) {
             if (node == null) {
                 return node;
             } else if (isIdentifierNode(node)) {
                 return transformIdentifierToNumber(node);
             } else {
                 SyntaxNode newNode = new SyntaxNode(node.getToken());
-                newNode.left = transformIdentifiers(node.left);
-                newNode.right = transformIdentifiers(node.right);
+                newNode.left = transformNumbers(node.left);
+                newNode.right = transformNumbers(node.right);
                 return node;
             }
         }
@@ -150,7 +150,7 @@ namespace IntegralCalculator.FunctionParser
 
         private bool isFunctionName(SyntaxNode node) {
             string value = node.getSymbolValue();
-            return Calculator.globalNameSpace.hasFunction(value) && 
+            return Calculator.globalNameSpace.hasFunction(value) || 
                              Calculator.currentNameSpace.hasFunction(value);
         }
 

@@ -10,5 +10,17 @@ namespace IntegralCalculator.FunctionParser
         public SemanticNode(Token token) {
             this.token = token;
         }
+
+        public string getSymbolValue() {
+            return token.getSymbol().getValue();
+        }
+
+        public Token getToken() {
+            return token;
+        }
+
+        public TokenType getTokenType() {
+            return token.getTokenType();
+        }
     }
 }

@@ -14,6 +14,10 @@ namespace IntegralCalculator.FunctionParser
             this.syntaxTree = syntaxTree;
         }
 
+        public SemanticNode getRoot() {
+            return root;
+        }
+
         public void analyze(Declaration declaration) {
             this.declaration = declaration;
             this.root = analyze(syntaxTree.getRoot());

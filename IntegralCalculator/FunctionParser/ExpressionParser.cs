@@ -22,7 +22,7 @@ namespace IntegralCalculator.FunctionParser {
             SemanticTree semanticTree = new SemanticTree(syntaxTree);
             semanticTree.analyze(declaration);
 
-            EvaluationTree evaluationTree = new EvaluationTree(syntaxTree);
+            EvaluationTree evaluationTree = new EvaluationTree(semanticTree);
             return evaluationTree;
         }
     }

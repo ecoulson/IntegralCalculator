@@ -9,13 +9,5 @@ namespace IntegralCalculator.FunctionParser
         MULTIPLY,
         DIVIDE,
         EXPONENT,
-        LOG,
-        LN,
-        SIN,
-        COS,
-        TAN,
-        SEC,
-        CSC,
-        COT,
     }
 }

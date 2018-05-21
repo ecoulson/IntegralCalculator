@@ -66,21 +66,27 @@
     <Compile Include="FunctionParser\OperatorType.cs" />
     <Compile Include="FunctionParser\Operator.cs" />
     <Compile Include="FunctionParser\EvaluationTree.cs" />
-    <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
-    <Compile Include="FunctionParser\EvaluationNode.cs" />
     <Compile Include="App\CalculatorClient.cs" />
     <Compile Include="App\ConsoleClient.cs" />
     <Compile Include="App\FileClient.cs" />
     <Compile Include="FunctionParser\SemanticTree.cs" />
     <Compile Include="FunctionParser\Namespace.cs" />
-    <Compile Include="FunctionParser\SemanticNode.cs" />
     <Compile Include="Exceptions\UnknownVariableException.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\EvaluationNodeType.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\OperatorNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\FunctionNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\VariableNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\NumberNode.cs" />
+    <Compile Include="FunctionParser\SemanticNode.cs" />
+    <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\EvaluationNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="FunctionParser\" />
     <Folder Include="App\" />
     <Folder Include="Streams\" />
+    <Folder Include="FunctionParser\EvaluationNodes\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
