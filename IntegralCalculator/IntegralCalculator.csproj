@@ -71,6 +71,10 @@
     <Compile Include="App\CalculatorClient.cs" />
     <Compile Include="App\ConsoleClient.cs" />
     <Compile Include="App\FileClient.cs" />
+    <Compile Include="FunctionParser\SemanticTree.cs" />
+    <Compile Include="FunctionParser\Namespace.cs" />
+    <Compile Include="FunctionParser\SemanticNode.cs" />
+    <Compile Include="Exceptions\UnknownVariableException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

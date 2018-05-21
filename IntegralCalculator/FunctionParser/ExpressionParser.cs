@@ -4,9 +4,11 @@ using IntegralCalculator.Streams;
 
 namespace IntegralCalculator.FunctionParser {
     public class ExpressionParser {
+        private Declaration declaration;
         private string expression;
 
-        public ExpressionParser(string expression) {
+        public ExpressionParser(Declaration declaration, string expression) {
+            this.declaration = declaration;
             this.expression = expression;
         }
 
@@ -16,6 +18,9 @@ namespace IntegralCalculator.FunctionParser {
 
             SyntaxTree syntaxTree = new SyntaxTree(tokenStream);
             syntaxTree.analyze();
+
+            SemanticTree semanticTree = new SemanticTree(syntaxTree);
+            semanticTree.analyze(declaration);
 
             EvaluationTree evaluationTree = new EvaluationTree(syntaxTree);
             return evaluationTree;

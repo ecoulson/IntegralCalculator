@@ -25,7 +25,7 @@ namespace IntegralCalculator.App
 
         private EvaluationTree parseExpression() {
             string rightHandSide = getRightHandSide();
-            ExpressionParser expressionParser = new ExpressionParser(rightHandSide);
+            ExpressionParser expressionParser = new ExpressionParser(declaration, rightHandSide);
             return expressionParser.parse();
         }
 

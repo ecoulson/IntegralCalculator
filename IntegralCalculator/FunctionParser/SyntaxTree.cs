@@ -16,7 +16,12 @@ namespace IntegralCalculator.FunctionParser
             this.root = treeBuilder.buildTree();
         }
 
+        public SyntaxNode getRoot() {
+            return root;
+        }
+
         public void analyze() {
+            // TODO: Possibly break down these routines into their own trees?
             this.root = transformIdentifiers(root);
             this.root = breakOutExponents(root);
             this.root = transformInvokes(root);
@@ -144,7 +149,9 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool isFunctionName(SyntaxNode node) {
-            return Calculator.functionNameSpace.ContainsKey(node.getSymbolValue());
+            string value = node.getSymbolValue();
+            return Calculator.globalNameSpace.hasFunction(value) && 
+                             Calculator.currentNameSpace.hasFunction(value);
         }
 
         private SyntaxNode transformInvokes(SyntaxNode node) {

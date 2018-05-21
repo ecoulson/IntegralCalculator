@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using IntegralCalculator.FunctionParser;
 
 namespace IntegralCalculator.App
 {
     public class Calculator
     {
-        public static Dictionary<String, Function> functionNameSpace = new Dictionary<string, Function>();
+        public static Namespace globalNameSpace = new Namespace();
+        public static Namespace currentNameSpace = new Namespace();
 
         public Calculator() {
-            functionNameSpace.Add("g", new Function("g(x)=x"));
+            globalNameSpace.addFunction("g", new Function("g(x)=x"));
         }
 
         public double calculateDefiniteIntegral(Function function, Interval interval) {
