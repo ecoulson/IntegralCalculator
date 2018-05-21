@@ -17,16 +17,48 @@ namespace IntegralCalculator.FunctionParser
         }
 
         public void analyze() {
+            this.root = transformIdentifiers(root);
             this.root = breakOutExponents(root);
             this.root = transformInvokes(root);
             this.root = breakDownIdentifiers(root);
         }
 
-        public void print() {
-            if (root.left != null) {
-                Console.WriteLine(root.getSymbolValue());    
+        private SyntaxNode transformIdentifiers(SyntaxNode node) {
+            if (node == null) {
+                return node;
+            } else if (isIdentifierNode(node)) {
+                return transformIdentifierToNumber(node);
+            } else {
+                SyntaxNode newNode = new SyntaxNode(node.getToken());
+                newNode.left = transformIdentifiers(node.left);
+                newNode.right = transformIdentifiers(node.right);
+                return node;
             }
         }
+
+        private SyntaxNode transformIdentifierToNumber(SyntaxNode node) {
+            if (shouldTransformIdentifierToNumber(node)) {
+                node.transformToken(TokenType.NUMBER);
+                return node;
+            } else {
+                return node;
+            }
+        }
+
+        private bool shouldTransformIdentifierToNumber(SyntaxNode node) {
+            string symbol = node.getSymbolValue();
+            foreach (char ch in symbol) {
+                if (isCharDigit(ch)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool isCharDigit(char ch) {
+            return !char.IsDigit(ch) && ch != '.';
+        }
+
 
         private SyntaxNode breakOutExponents(SyntaxNode node) {
             if (node == null) {
@@ -71,7 +103,7 @@ namespace IntegralCalculator.FunctionParser
         private SyntaxNode[] splitIdentifierNodeAtLastChar(SyntaxNode node) {
             SyntaxNode[] split = new SyntaxNode[2];
             string symbol = node.getSymbolValue();
-            Symbol rhsSymbol = new Symbol(symbol.Substring(symbol.Length - 2, symbol.Length - 1));
+            Symbol rhsSymbol = new Symbol(symbol.Substring(0, symbol.Length - 1));
             Symbol lhsSymbol = new Symbol(symbol[symbol.Length - 1].ToString());
             Token lhsIdentifier = new Token(lhsSymbol, TokenType.IDENTIFIER);
             Token rhsIdentifier = new Token(rhsSymbol, TokenType.IDENTIFIER);
@@ -81,7 +113,7 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool shouldSeperateInvoke(SyntaxNode node) {
-            return isInvokeNode(node.left) || isInvokeNode(node.right);
+            return isInvokeNode(node.left);
         }
 
         private bool isInvokeNode(SyntaxNode node) {
@@ -89,19 +121,14 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private SyntaxNode seperateInvoke(SyntaxNode node) {
-            return node;
-        }
-
-        private SyntaxNode transformInvokes(SyntaxNode node) {
-            if (node == null) {
+            SyntaxNode simplifiedInvoke = simplifyInvoke(node.left);
+            if (isInvokeNode(simplifiedInvoke)) {
                 return node;
-            } else if (isInvokeNode(node)) {
-                return simplifyInvoke(node);
             } else {
-                SyntaxNode newNode = new SyntaxNode(node.getToken());
-                newNode.left = transformInvokes(node.left);
-                newNode.right = transformInvokes(node.right);
-                return newNode;
+                SyntaxNode temp = simplifiedInvoke.right;
+                simplifiedInvoke.right = node;
+                node.left = temp;
+                return simplifiedInvoke;
             }
         }
 
@@ -118,6 +145,19 @@ namespace IntegralCalculator.FunctionParser
 
         private bool isFunctionName(SyntaxNode node) {
             return Calculator.functionNameSpace.ContainsKey(node.getSymbolValue());
+        }
+
+        private SyntaxNode transformInvokes(SyntaxNode node) {
+            if (node == null) {
+                return node;
+            } else if (isInvokeNode(node)) {
+                return simplifyInvoke(node);
+            } else {
+                SyntaxNode newNode = new SyntaxNode(node.getToken());
+                newNode.left = transformInvokes(node.left);
+                newNode.right = transformInvokes(node.right);
+                return newNode;
+            }
         }
 
         private SyntaxNode breakDownIdentifiers(SyntaxNode node) {

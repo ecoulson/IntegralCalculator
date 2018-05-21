@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{1E75E8D2-D0FD-4C55-B9DC-9B0F795436F7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/FunctionParser/SyntaxTree.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/FunctionParser/ExpressionParser.cs">
     <Files>
-      <File FileName="IntegralCalculator/Program.cs" Line="11" Column="54" />
-      <File FileName="IntegralCalculator/FunctionParser/SyntaxTree.cs" Line="53" Column="17" />
+      <File FileName="IntegralCalculator/Program.cs" Line="11" Column="57" />
       <File FileName="IntegralCalculator/FunctionParser/OperatorType.cs" Line="12" Column="9" />
-      <File FileName="IntegralCalculator/FunctionParser/SyntaxTreeBuilder.cs" Line="133" Column="44" />
+      <File FileName="IntegralCalculator/FunctionParser/ExpressionParser.cs" Line="18" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
