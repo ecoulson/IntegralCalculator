@@ -28,14 +28,47 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private SyntaxNode readFactors() {
-            SyntaxNode node = readExponents();
+            SyntaxNode node = readNegatives();
             while (shouldReadFactor()) {
                 SyntaxNode operatorNode = readFactorOperator();
                 operatorNode.left = node;
-                operatorNode.right = readExponents();
+                operatorNode.right = readNegatives();
                 node = operatorNode;
             }
             return node;
+        }
+
+        private SyntaxNode readNegatives() {
+            if (shouldReadNegative()) {
+                return readNegativeSubtree();
+            } else {
+                return readExponents();
+            }
+        }
+
+        private bool shouldReadNegative() {
+            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenMinusSign();
+        }
+
+        private SyntaxNode readNegativeSubtree() {
+            SyntaxNode node = readNegativeOperator();
+            node.right = SyntaxNode.createOppositeNode();
+            while (shouldReadNegative()) {
+                SyntaxNode operatorNode = readNegativeOperator();
+                node.left = SyntaxNode.createOppositeNode();
+                operatorNode.right = node;
+                node = operatorNode;
+            }
+            node.left = readExponents();
+            return node;
+        }
+
+        private SyntaxNode readNegativeOperator() {
+            if (tokenStream.isNextTokenMinusSign()) {
+                return readTransformedNegativeNode();
+            } else {
+                throw new IllegalTokenException("Illegal Token type: " + tokenStream.peek().getTokenType());
+            }
         }
 
         private SyntaxNode readExponents() {
@@ -59,6 +92,13 @@ namespace IntegralCalculator.FunctionParser
             } else {
                 throw new IllegalTokenException("Illegal Token type: " + tokenStream.peek().getTokenType());
             }
+        }
+
+        private SyntaxNode readTransformedNegativeNode() {
+            SyntaxNode node = readNode();
+            node.setSymbol("*");
+            node.transformToken(TokenType.OPERATOR);
+            return node;
         }
 
         private bool shouldReadFactor() {
@@ -86,51 +126,18 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private SyntaxNode readNode() {
-            bool isNegative = shouldHandleNegative();
-
             if (tokenStream.isNextTokenLeftParentheses()) {
-                return readParentheses(isNegative);
+                return readParentheses();
             } else {
-                return readToken(isNegative);
+                return new SyntaxNode(tokenStream.read());
             }
         }
 
-        private bool shouldHandleNegative() {
-            bool isNegative = tokenStream.isNextTokenMinusSign();
-            if (isNegative) {
-                tokenStream.read();
-            }
-            return isNegative;
-        }
-
-        private SyntaxNode readParentheses(bool isNegative) {
+         private SyntaxNode readParentheses() {
             tokenStream.read();
             SyntaxNode node = readSums();
-            if (isNegative) {
-                node = handleNegative(node);
-            }
             tokenStream.read();
             return node;
-        }
-
-        private SyntaxNode handleNegative(SyntaxNode node) {
-            Symbol operatorSymbol = new Symbol("*");
-            Token operatorToken = new Token(operatorSymbol, TokenType.OPERATOR);
-            SyntaxNode negativeNode = new SyntaxNode(operatorToken);
-            negativeNode.left = node;
-            Symbol negativeSymbol = new Symbol("-");
-            Token negativeToken = new Token(negativeSymbol, TokenType.NEGATIVE);
-            negativeNode.right = new SyntaxNode(negativeToken);
-            node = negativeNode;
-            return node;
-        }
-
-        private SyntaxNode readToken(bool isNegative) {
-            SyntaxNode node = new SyntaxNode(tokenStream.read());
-            if (isNegative) {
-                handleNegative(node);
-            }
-            return node;   
         }
     }
 }

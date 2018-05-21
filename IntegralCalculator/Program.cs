@@ -8,7 +8,7 @@ namespace IntegralCalculator
     {
         public static void Main(string[] args) {
             Calculator calculator = new Calculator();
-            Function function = new Function("f(x)= x^2 / -x");
+            Function function = new Function("f(x)= ---eee^2/-x");
             Interval interval = new Interval(0, 5);
             double n = calculator.calculateDefiniteIntegral(function, interval);
             Console.WriteLine(n);

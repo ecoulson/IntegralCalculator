@@ -16,5 +16,9 @@ namespace IntegralCalculator.FunctionParser {
         public Symbol getSymbol() {
             return symbol;
         }
+
+        public void transform(TokenType tokenType) {
+            this.tokenType = tokenType;
+        }
     }
 }

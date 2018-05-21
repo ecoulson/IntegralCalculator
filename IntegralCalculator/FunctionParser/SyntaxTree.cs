@@ -17,15 +17,20 @@ namespace IntegralCalculator.FunctionParser
 
         public void analyze() {
             this.root = analyze(root);
+            printNode(root.left.left.right.right);
         }
 
         private void printNode(SyntaxNode node) {
+            Console.WriteLine(node.getTokenType());
             Console.WriteLine(node.getToken().getSymbol().getValue());
+            Console.WriteLine();
         }
 
         private SyntaxNode analyze(SyntaxNode node) {
-            if (node.getTokenType() == TokenType.IDENTIFIER) {
-                string identifier = node.getToken().getSymbol().getValue();
+            if (node == null) {
+                return node;
+            } else if (node.getTokenType() == TokenType.IDENTIFIER) {
+                string identifier = node.getTokenValue();
                 currentCharacterStream = new CharacterStream(identifier);
                 return parseIdentifier();
             } else {
@@ -41,10 +46,11 @@ namespace IntegralCalculator.FunctionParser
         private SyntaxNode parseIdentifier() {
             SyntaxNode node = readNode();
             while (!currentCharacterStream.isEndOfStream()) {
-                Token operatorToken = new Token(new Symbol("*"), TokenType.OPERATOR);
+                Symbol operatorSymbol = new Symbol("*");
+                Token operatorToken = new Token(operatorSymbol, TokenType.OPERATOR);
                 SyntaxNode operatorNode = new SyntaxNode(operatorToken);
-                operatorNode.left = node;
-                operatorNode.right = readNode();
+                operatorNode.right = node;
+                operatorNode.left = readNode();
                 node = operatorNode;
             }
             return node;

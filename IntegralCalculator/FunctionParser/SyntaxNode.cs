@@ -26,9 +26,30 @@ namespace IntegralCalculator.FunctionParser
             return token.getTokenType();
         }
 
-        public override string ToString()
-        {
+        public string getTokenValue() {
+            return token.getSymbol().getValue();
+        }
+
+        public void transformToken(TokenType tokenType) {
+            token.transform(tokenType);
+        }
+
+        public void setSymbol(string symbol) {
+            token.getSymbol().setSymbol(symbol);
+        }
+
+        public string getSymbolValue() {
+            return token.getSymbol().getValue();
+        }
+
+        public override string ToString() {
             return "[SyntaxNode] Token: " + token.getTokenType();
+        }
+
+        public static SyntaxNode createOppositeNode() {
+            Symbol symbol = new Symbol("-1");
+            Token oppositeToken = new Token(symbol, TokenType.NUMBER);
+            return new SyntaxNode(oppositeToken);
         }
     }
 }

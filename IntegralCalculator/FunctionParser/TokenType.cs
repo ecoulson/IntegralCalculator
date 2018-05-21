@@ -12,5 +12,6 @@ namespace IntegralCalculator.FunctionParser
         ABSOLUTE_VALUE,
         VARIABLE,
         NEGATIVE,
+        INVOKE,
     }
 }
