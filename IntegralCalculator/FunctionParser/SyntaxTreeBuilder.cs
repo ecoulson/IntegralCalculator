@@ -126,10 +126,17 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private SyntaxNode readNode() {
-            if (tokenStream.isNextTokenLeftParentheses()) {
+            if (shouldReadParentheses()) {
                 return readParentheses();
             } else {
-                return new SyntaxNode(tokenStream.read());
+                SyntaxNode node = new SyntaxNode(tokenStream.read());
+                if (shouldReadParentheses()) {
+                    SyntaxNode invokeNode = SyntaxNode.createInvokeNode();
+                    invokeNode.right = readParentheses();
+                    invokeNode.left = node;
+                    node = invokeNode;
+                }
+                return node;
             }
         }
 
@@ -138,6 +145,10 @@ namespace IntegralCalculator.FunctionParser
             SyntaxNode node = readSums();
             tokenStream.read();
             return node;
+        }
+
+        private bool shouldReadParentheses() {
+            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenLeftParentheses();
         }
     }
 }

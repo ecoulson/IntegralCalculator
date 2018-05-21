@@ -16,6 +16,8 @@ namespace IntegralCalculator.FunctionParser {
 
             SyntaxTree syntaxTree = new SyntaxTree(tokenStream);
             syntaxTree.analyze();
+            syntaxTree.print();
+
             EvaluationTree evaluationTree = new EvaluationTree(syntaxTree);
             return evaluationTree;
         }

@@ -51,5 +51,17 @@ namespace IntegralCalculator.FunctionParser
             Token oppositeToken = new Token(symbol, TokenType.NUMBER);
             return new SyntaxNode(oppositeToken);
         }
+
+        public static SyntaxNode createInvokeNode() {
+            Symbol symbol = new Symbol("invoke");
+            Token token = new Token(symbol, TokenType.INVOKE);
+            return new SyntaxNode(token);
+        }
+
+        public static SyntaxNode createMultiplierNode() {
+            Symbol symbol = new Symbol("*");
+            Token token = new Token(symbol, TokenType.OPERATOR);
+            return new SyntaxNode(token);
+        }
     }
 }
