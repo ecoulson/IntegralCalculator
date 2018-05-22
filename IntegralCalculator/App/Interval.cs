@@ -3,6 +3,9 @@ namespace IntegralCalculator.App
 {
     public class Interval
     {
+        private static readonly double MIN_INTERVAL_VALUE = -100;
+        private static readonly double MAX_INTERVAL_VALUE = 100;
+
         private double start;
         private double end;
 
@@ -29,6 +32,15 @@ namespace IntegralCalculator.App
 
         public void setEndPoint(double end) {
             this.end = end;
+        }
+
+        public static Interval generateRandomInterval(double length) {
+            Random random = new Random();
+            double min = MIN_INTERVAL_VALUE + length;
+            double max = MAX_INTERVAL_VALUE;
+            double end = random.NextDouble() * (max - min) + min;
+            double start = end - length;
+            return new Interval(start, end);
         }
     }
 }
