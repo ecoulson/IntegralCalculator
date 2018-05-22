@@ -141,11 +141,15 @@ namespace IntegralCalculator.FunctionParser
             if (isFunctionName(node.left)) {
                 return node;
             } else {
-                SyntaxNode multiplierNode = SyntaxNode.createMultiplierNode();
-                multiplierNode.left = node.left;
-                multiplierNode.right = node.right;
-                return multiplierNode;
+                return multiplyNode(node);
             }
+        }
+
+        private SyntaxNode multiplyNode(SyntaxNode node) {
+            SyntaxNode multiplierNode = SyntaxNode.createMultiplierNode();
+            multiplierNode.left = node.left;
+            multiplierNode.right = node.right;
+            return multiplierNode;
         }
 
         private bool isFunctionName(SyntaxNode node) {
@@ -183,7 +187,7 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool isIdentifierNode(SyntaxNode node) {
-            return node.getTokenType() == TokenType.IDENTIFIER;
+            return node.getTokenType() == TokenType.IDENTIFIER && !isFunctionName(node);
         }
 
         private SyntaxNode parseIdentifier() {

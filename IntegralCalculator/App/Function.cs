@@ -9,6 +9,11 @@ namespace IntegralCalculator.App
         private Declaration declaration;
         private string function;
 
+        public Function (Declaration declaration, EvaluationTree tree) {
+            this.evaluationTree = tree;
+            this.declaration = declaration;
+        }
+
         public Function(string function) {
             this.function = function;
             if (isValidFunction()) {

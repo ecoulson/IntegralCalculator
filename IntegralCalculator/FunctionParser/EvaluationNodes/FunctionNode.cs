@@ -13,6 +13,10 @@ namespace IntegralCalculator.FunctionParser.EvaluationNodes
             this.evaluationTree = evaluationTree;
         }
 
+        public FunctionNode():base(EvaluationNodeType.FUNCTION) {
+            
+        }
+
         public override double evaluate(double x){
             double newX = evaluationTree.evaluate(x);
             return function.calculateY(newX);

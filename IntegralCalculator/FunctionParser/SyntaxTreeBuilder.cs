@@ -114,7 +114,9 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private bool shouldReadSum() {
-            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenSumOperator() && !tokenStream.isNextTokenRightParentheses();
+            return !tokenStream.isEndOfStream() && 
+                               tokenStream.isNextTokenSumOperator() && 
+                               !tokenStream.isNextTokenRightParentheses();
         }
 
         private SyntaxNode readSumOperator() {
@@ -126,29 +128,36 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private SyntaxNode readNode() {
-            if (shouldReadParentheses()) {
-                return readParentheses();
+            SyntaxNode node = new SyntaxNode(tokenStream.read());
+            if (shouldReadParentheses()){
+                return readInvokeNode(node);
             } else {
-                SyntaxNode node = new SyntaxNode(tokenStream.read());
-                if (shouldReadParentheses()) {
-                    SyntaxNode invokeNode = SyntaxNode.createInvokeNode();
-                    invokeNode.right = readParentheses();
-                    invokeNode.left = node;
-                    node = invokeNode;
-                }
                 return node;
             }
         }
 
-         private SyntaxNode readParentheses() {
-            tokenStream.read();
-            SyntaxNode node = readSums();
-            tokenStream.read();
+        private SyntaxNode readInvokeNode(SyntaxNode node) {
+            SyntaxNode invokeNode = SyntaxNode.createInvokeNode();
+            invokeNode.right = readParentheses();
+            invokeNode.left = node;
+            node = invokeNode;
             return node;
         }
 
+        private SyntaxNode readParentheses() {
+            if (shouldReadParentheses()) {
+                tokenStream.read();
+                SyntaxNode node = readSums();
+                tokenStream.read();
+                return node;
+            } else {
+                return readNode();
+            }
+        }
+
         private bool shouldReadParentheses() {
-            return !tokenStream.isEndOfStream() && tokenStream.isNextTokenLeftParentheses();
+            return !tokenStream.isEndOfStream() &&
+                               tokenStream.isNextTokenLeftParentheses();
         }
     }
 }

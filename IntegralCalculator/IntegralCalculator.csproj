@@ -80,6 +80,16 @@
     <Compile Include="FunctionParser\SemanticNode.cs" />
     <Compile Include="FunctionParser\EvaluationTreeBuilder.cs" />
     <Compile Include="FunctionParser\EvaluationNodes\EvaluationNode.cs" />
+    <Compile Include="App\PredefinedFunctions.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\SinNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\CosNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\TanNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\AbsNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\LnNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\LogNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\ArcsinNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\ArccosNode.cs" />
+    <Compile Include="FunctionParser\EvaluationNodes\ArctanNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

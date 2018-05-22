@@ -9,7 +9,7 @@ namespace IntegralCalculator.App
         public static Namespace currentNameSpace = new Namespace();
 
         public Calculator() {
-            globalNameSpace.addFunction("g", new Function("g(x)=x"));
+            PredefinedFunctions.addFunctionsToGlobalSpace();
         }
 
         public double calculateDefiniteIntegral(Function function, Interval interval) {

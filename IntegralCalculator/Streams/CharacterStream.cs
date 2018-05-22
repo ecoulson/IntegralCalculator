@@ -53,8 +53,7 @@ namespace IntegralCalculator.Streams
                     nextChar == '-' ||
                     nextChar == '^' ||
                     nextChar == '*' ||
-                    nextChar == '/' ||
-                    nextChar == '|';
+                    nextChar == '/';
         }
 
         public bool isNextCharDigit() {
