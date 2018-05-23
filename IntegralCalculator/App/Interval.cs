@@ -4,7 +4,7 @@ namespace IntegralCalculator.App
     public class Interval
     {
         private static readonly double MIN_INTERVAL_VALUE = double.Epsilon;
-        private static readonly double MAX_INTERVAL_VALUE = double.MaxValue;
+        private static readonly double MAX_INTERVAL_VALUE = 1000000;
 
         private double start;
         private double end;

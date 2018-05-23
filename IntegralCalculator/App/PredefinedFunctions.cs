@@ -23,6 +23,7 @@ namespace IntegralCalculator.App
             space.addFunction("abs", createAbsFunction());
             space.addFunction("ln", createLnFunction());
             space.addFunction("log", createLogFunction());
+            space.addFunction("sqrt", createSqrtFunction());
         }
 
         private static Function createSinFunction() {
@@ -98,6 +99,10 @@ namespace IntegralCalculator.App
             EvaluationNode node = new ArctanNode();
             EvaluationTree tree = new EvaluationTree(node);
             return new Function(declaration, tree);
+        }
+
+        private static Function createSqrtFunction() {
+            return new Function("sqrt(x)=x^0.5");
         }
     }
 }
