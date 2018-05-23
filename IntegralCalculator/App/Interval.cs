@@ -3,8 +3,8 @@ namespace IntegralCalculator.App
 {
     public class Interval
     {
-        private static readonly double MIN_INTERVAL_VALUE = -100;
-        private static readonly double MAX_INTERVAL_VALUE = 100;
+        private static readonly double MIN_INTERVAL_VALUE = double.Epsilon;
+        private static readonly double MAX_INTERVAL_VALUE = double.MaxValue;
 
         private double start;
         private double end;
@@ -32,6 +32,10 @@ namespace IntegralCalculator.App
 
         public void setEndPoint(double end) {
             this.end = end;
+        }
+
+        public override string ToString() {
+            return "(" + this.start + ", " + this.end + ")";
         }
 
         public static Interval generateRandomInterval(double length) {

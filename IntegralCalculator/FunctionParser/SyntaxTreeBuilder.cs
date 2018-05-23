@@ -72,14 +72,30 @@ namespace IntegralCalculator.FunctionParser
         }
 
         private SyntaxNode readExponents() {
-            SyntaxNode node = readNode();
+            SyntaxNode node = readParentheses();
             while (shouldReadExponent()) {
                 SyntaxNode operatorNode = readExponentOperator();
                 operatorNode.left = node;
-                operatorNode.right = readNode();
+                operatorNode.right = readParentheses();
                 node = operatorNode;
             }
             return node;
+        }
+
+        private SyntaxNode readParentheses() {
+            if (shouldReadParentheses()) {
+                tokenStream.read();
+                SyntaxNode node = readSums();
+                tokenStream.read();
+                return node;
+            } else {
+                return readNode();
+            }
+        }
+
+        private bool shouldReadParentheses() {
+            return !tokenStream.isEndOfStream() &&
+                               tokenStream.isNextTokenLeftParentheses();
         }
 
         private bool shouldReadExponent() {
@@ -129,7 +145,7 @@ namespace IntegralCalculator.FunctionParser
 
         private SyntaxNode readNode() {
             SyntaxNode node = new SyntaxNode(tokenStream.read());
-            if (shouldReadParentheses()){
+            if (node.getTokenType() == TokenType.IDENTIFIER && shouldReadParentheses()){
                 return readInvokeNode(node);
             } else {
                 return node;
@@ -142,22 +158,6 @@ namespace IntegralCalculator.FunctionParser
             invokeNode.left = node;
             node = invokeNode;
             return node;
-        }
-
-        private SyntaxNode readParentheses() {
-            if (shouldReadParentheses()) {
-                tokenStream.read();
-                SyntaxNode node = readSums();
-                tokenStream.read();
-                return node;
-            } else {
-                return readNode();
-            }
-        }
-
-        private bool shouldReadParentheses() {
-            return !tokenStream.isEndOfStream() &&
-                               tokenStream.isNextTokenLeftParentheses();
         }
     }
 }

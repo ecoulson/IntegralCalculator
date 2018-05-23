@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{1E75E8D2-D0FD-4C55-B9DC-9B0F795436F7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/App/Interval.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="IntegralCalculator/App/Integrator.cs">
     <Files>
-      <File FileName="IntegralCalculator/Program.cs" Line="12" Column="53" />
-      <File FileName="IntegralCalculator/App/Calculator.cs" Line="12" Column="61" />
+      <File FileName="IntegralCalculator/Program.cs" Line="11" Column="59" />
       <File FileName="IntegralCalculator/FunctionParser/SemanticTree.cs" Line="49" Column="1" />
-      <File FileName="IntegralCalculator/App/Interval.cs" Line="34" Column="32" />
+      <File FileName="IntegralCalculator/FunctionParser/Operator.cs" Line="15" Column="47" />
+      <File FileName="IntegralCalculator/App/Integrator.cs" Line="7" Column="61" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
