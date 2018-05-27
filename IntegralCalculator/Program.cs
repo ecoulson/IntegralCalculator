@@ -2,6 +2,7 @@
 using IntegralCalculator.App;
 using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace IntegralCalculator
 {
@@ -93,8 +94,8 @@ namespace IntegralCalculator
         private static string getFormatedOutputLine(Interval interval, double result) {
             double start = interval.getStartPoint();
             double end = interval.getEndPoint();
-            return string.Format("function: {0,-40} interval: ({1,-16}, {2,-16}) result: {3,-16}\n", 
-                functionExpressions[currentFunctionNumber - 1], start, end, result);
+            return string.Format(" function: {0,-40} interval: ({1,-16}, {2,-16}) result: {3,-16}\n", 
+                functionExpressions[currentFunctionNumber - 1], start, end, result.ToString("E10"));
         }
 
         private static void printIntegralProgess() {
